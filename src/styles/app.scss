@@ -1,0 +1,126 @@
+// colors
+$color-font: #222;
+$color-max: rgba(0,255,0,0.77);
+$color-equal: orange;
+$color-min: rgba(255,0,0,0.77);
+$color-nav-active: #ddd;
+$color-nav-hover: #eee;
+
+// sizes
+$nav-width: 150px;
+$nav-item-height: 2em;
+
+html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.sm-container {
+  color: $color-font;
+  display: flex;
+}
+
+nav {
+  width: $nav-width;
+
+  ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+      height: $nav-item-height;
+      line-height: $nav-item-height;
+
+      a {
+        color: $color-font;
+        display: block;
+        text-decoration: none;
+        padding-left: 10px;
+
+        &:hover {
+          background-color: $color-nav-hover;
+        }
+        &.active {
+          background-color: $color-nav-active;
+        }
+      }
+    }
+  }
+}
+
+section {
+  width: calc(100% - 150px);
+}
+
+.sm-compare-search {
+  margin-bottom: 2em;
+
+  input, button {
+    width: calc((100% - 4px) / 3);
+    height: 2em;
+  }
+
+  input {
+    border: 1px solid #ddd;
+  }
+}
+
+.sm-table {
+  width: 100%;
+  border-collapse: collapse;
+
+  td, th {
+    border: 1px solid #ddd;
+    text-align: center;
+    width: calc(100% / 5);
+    height: 2em;
+  }
+
+  tr:nth-child(even) {
+    background-color: #eee;
+  }
+
+  tr {
+    &.sm-compare-max {
+      background-color: $color-max;
+    }
+    &.sm-compare-equal {
+      background-color: $color-equal;
+    }
+    &.sm-compare-min {
+      background-color: $color-min;
+    }
+  }
+
+  &-compare {
+    td, th {
+      width: calc(100% / 3);
+    }
+  }
+}
+
+@media screen and (min-width: 800px) {
+  .sm-container {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .sm-container {
+    display: block;
+    margin: 0;
+
+    nav {
+      width: 100%;
+      padding-bottom: 2em;
+    }
+
+    section {
+      width: 100%;
+    }
+  }
+}
