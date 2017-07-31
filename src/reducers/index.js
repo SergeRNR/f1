@@ -1,18 +1,16 @@
-export default (state = { players: [] }, action) => {
+import { FETCH_DRIVERS_SUCCESS } from '../actionTypes';
+
+const initialState = {
+    drivers: []
+};
+
+export default (state = initialState, action) => {
     switch (action.type) {
 
-        case 'LOAD_PLAYERS_SUCCESS':
-            return Object.assign({}, state, {
-                players: action.data
-            });
-
-        case 'SEARCH_PLAYERS':
-            return Object.assign({}, state, {
-                compare: {
-                    playerA: action.data.playerA || null,
-                    playerB: action.data.playerB || null
-                }
-            });
+        case FETCH_DRIVERS_SUCCESS:
+            let data = action.data.MRData.DriverTable.Drivers;
+            return {...state, ...{ drivers: data }};
+            break;
 
         default:
             return state;

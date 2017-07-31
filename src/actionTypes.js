@@ -1,0 +1,4 @@
+export const FETCH_DRIVERS          = 'FETCH_DRIVERS';
+export const FETCH_DRIVERS_SUCCESS  = 'FETCH_DRIVERS_SUCCESS';
+export const FETCH_DRIVERS_ERROR    = 'FETCH_DRIVERS_ERROR';
+export const FETCH_CIRCUITS         = 'FETCH_CIRCUITS';

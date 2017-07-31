@@ -1,4 +1,21 @@
-const BASE_API_URL = 'http://127.0.0.1:8000/api/';
+import { BASE_API_URL } from './config';
+import { FETCH_DRIVERS_SUCCESS } from './actionTypes';
+import { FETCH_DRIVERS_ERROR } from './actionTypes';
+
+export function fetchDrivers() {
+    return (dispatch) => {
+        fetch(`${BASE_API_URL}/drivers.json`).then(
+            response => response.json().then(data => dispatch({
+                type: FETCH_DRIVERS_SUCCESS,
+                data
+            })),
+            error => dispatch({
+                type: FETCH_DRIVERS_ERROR,
+                error
+            })
+        );
+    };
+}
 
 export function loadPlayers() {
     return (dispatch, getState) => {
@@ -31,7 +48,7 @@ let getSearchPromise = name => {
     } else {
         return Promise.resolve([null]);
     }
-}
+};
 
 export function searchPlayers(nameA, nameB) {
     return dispatch => {

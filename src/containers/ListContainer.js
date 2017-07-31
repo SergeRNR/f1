@@ -1,13 +1,13 @@
 import { connect } from 'react-redux';
-import List from './List';
-import { loadPlayers } from '../actionCreators';
+import List from '../components/List';
+import { fetchDrivers } from '../actionCreators';
 
 const mapStateToProps = state => ({
-    list: state.players
+    list: state.drivers
 });
 
 const mapDispatchToProps = dispatch => ({
-    onMount: () => dispatch(loadPlayers())
+    onMount: () => dispatch(fetchDrivers())
 });
 
 const ListContainer = connect(

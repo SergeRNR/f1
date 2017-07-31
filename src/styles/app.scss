@@ -17,6 +17,12 @@ html, body {
   padding: 0;
 }
 
+.f1 {
+    &-wrapper {
+        display: flex;
+    }
+}
+
 .sm-container {
   color: $color-font;
   display: flex;
