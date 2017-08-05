@@ -1,0 +1,10 @@
+.table {
+    &>tbody>tr>td,
+    &>tbody>tr>th,
+    &>tfoot>tr>td,
+    &>tfoot>tr>th,
+    &>thead>tr>td,
+    &>thead>tr>th {
+        padding: 4px 8px;
+    }
+}

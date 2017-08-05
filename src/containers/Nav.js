@@ -5,10 +5,10 @@ class Nav extends React.Component {
     render() {
         return (
             <nav>
-                Navigation
                 <ul>
                     <li><NavLink to="/drivers">Drivers</NavLink></li>
                     <li><NavLink to="/circuits">Circuits</NavLink></li>
+                    <li><NavLink to="/constructors">Constructors</NavLink></li>
                 </ul>
             </nav>
         );

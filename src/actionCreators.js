@@ -1,45 +1,84 @@
 import { BASE_API_URL } from './config';
-import { FETCH_DRIVERS_SUCCESS } from './actionTypes';
-import { FETCH_DRIVERS_ERROR } from './actionTypes';
+import { FETCH_DRIVERS } from './actionTypes';
+import { FETCH_CIRCUITS } from './actionTypes';
+import { FETCH_CONSTRUCTORS } from './actionTypes';
 
 export function fetchDrivers() {
-    return (dispatch) => {
+    return (dispatch, getState) => {
+        let { drivers } = getState();
+        if (drivers && drivers.items) {
+            return;
+        }
+
+        dispatch({
+            type: FETCH_DRIVERS
+        });
+
         fetch(`${BASE_API_URL}/drivers.json`).then(
             response => response.json().then(data => dispatch({
-                type: FETCH_DRIVERS_SUCCESS,
+                type:   FETCH_DRIVERS,
+                status: 'success',
                 data
             })),
             error => dispatch({
-                type: FETCH_DRIVERS_ERROR,
+                type:   FETCH_DRIVERS,
+                status: 'error',
                 error
             })
         );
     };
 }
 
-export function loadPlayers() {
+export function fetchCircuits() {
     return (dispatch, getState) => {
-        let { players } = getState();
-
-        if (players.length) {
+        let { circuits } = getState();
+        if (circuits && circuits.items) {
             return;
         }
 
         dispatch({
-            type: 'LOAD_PLAYERS_REQUEST'
+            type: FETCH_CIRCUITS
         });
 
-        fetch(`${BASE_API_URL}players/`).then(
+        fetch(`${BASE_API_URL}/circuits.json`).then(
             response => response.json().then(data => dispatch({
-                type: 'LOAD_PLAYERS_SUCCESS',
+                type:   FETCH_CIRCUITS,
+                status: 'success',
                 data
             })),
             error => dispatch({
-                type: 'LOAD_PLAYERS_FAILURE',
+                type:   FETCH_CIRCUITS,
+                status: 'error',
                 error
             })
         );
-    }
+    };
+}
+
+export function fetchConstructors() {
+    return (dispatch, getState) => {
+        let { constructors } = getState();
+        if (constructors && constructors.items) {
+            return;
+        }
+
+        dispatch({
+            type: FETCH_CONSTRUCTORS
+        });
+
+        fetch(`${BASE_API_URL}/constructors.json`).then(
+            response => response.json().then(data => dispatch({
+                type:   FETCH_CONSTRUCTORS,
+                status: 'success',
+                data
+            })),
+            error => dispatch({
+                type:   FETCH_CONSTRUCTORS,
+                status: 'error',
+                error
+            })
+        );
+    };
 }
 
 let getSearchPromise = name => {

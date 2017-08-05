@@ -10,7 +10,7 @@ import rootReducer from './reducers';
 import Nav from './containers/Nav';
 import Main from './containers/Main';
 
-require('./styles/app.scss');
+require('./styles/index.scss');
 
 const store = createStore(
     rootReducer,

@@ -1,15 +1,15 @@
 import React from 'react';
 import ListContainer from './ListContainer';
 
-class Drivers extends React.Component {
+class Circuits extends React.Component {
     render() {
         return (
             <div>
-                Drivers
+                <h4>Circuits</h4>
                 <ListContainer />
             </div>
         );
     }
 }
 
-export default Drivers;
+export default Circuits;

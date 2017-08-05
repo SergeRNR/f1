@@ -23,11 +23,6 @@ html, body {
     }
 }
 
-.sm-container {
-  color: $color-font;
-  display: flex;
-}
-
 nav {
   width: $nav-width;
 
@@ -57,76 +52,14 @@ nav {
   }
 }
 
-section {
-  width: calc(100% - 150px);
-}
-
-.sm-compare-search {
-  margin-bottom: 2em;
-
-  input, button {
-    width: calc((100% - 4px) / 3);
-    height: 2em;
-  }
-
-  input {
-    border: 1px solid #ddd;
-  }
-}
-
-.sm-table {
-  width: 100%;
-  border-collapse: collapse;
-
-  td, th {
-    border: 1px solid #ddd;
-    text-align: center;
-    width: calc(100% / 5);
-    height: 2em;
-  }
-
-  tr:nth-child(even) {
-    background-color: #eee;
-  }
-
-  tr {
-    &.sm-compare-max {
-      background-color: $color-max;
-    }
-    &.sm-compare-equal {
-      background-color: $color-equal;
-    }
-    &.sm-compare-min {
-      background-color: $color-min;
-    }
-  }
-
-  &-compare {
-    td, th {
-      width: calc(100% / 3);
-    }
-  }
+main {
+    flex: 1;
 }
 
 @media screen and (min-width: 800px) {
-  .sm-container {
-    max-width: 800px;
-    margin: 0 auto;
-  }
+
 }
 
 @media screen and (max-width: 640px) {
-  .sm-container {
-    display: block;
-    margin: 0;
 
-    nav {
-      width: 100%;
-      padding-bottom: 2em;
-    }
-
-    section {
-      width: 100%;
-    }
-  }
 }
