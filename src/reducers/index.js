@@ -1,6 +1,8 @@
 import { FETCH_DRIVERS } from '../actionTypes';
 import { FETCH_CIRCUITS } from '../actionTypes';
 import { FETCH_CONSTRUCTORS } from '../actionTypes';
+import { SET_FILTER } from '../actionTypes';
+import { SET_CURRENT_SCREEN } from '../actionTypes';
 
 const initialState = {
     circuits: {},
@@ -10,6 +12,9 @@ const initialState = {
 
 export default (state = initialState, action) => {
     switch (action.type) {
+
+        case SET_CURRENT_SCREEN:
+            return {...state, ...{ currentScreen: action.screen }};
 
         case FETCH_DRIVERS:
             let drivers = {};

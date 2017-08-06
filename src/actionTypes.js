@@ -1,3 +1,5 @@
 export const FETCH_CIRCUITS     = 'FETCH_CIRCUITS';
 export const FETCH_CONSTRUCTORS = 'FETCH_CONSTRUCTORS';
 export const FETCH_DRIVERS      = 'FETCH_DRIVERS';
+export const SET_FILTER         = 'SET_FILTER';
+export const SET_CURRENT_SCREEN = 'SET_CURRENT_SCREEN';

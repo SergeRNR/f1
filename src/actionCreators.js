@@ -2,6 +2,21 @@ import { BASE_API_URL } from './config';
 import { FETCH_DRIVERS } from './actionTypes';
 import { FETCH_CIRCUITS } from './actionTypes';
 import { FETCH_CONSTRUCTORS } from './actionTypes';
+import { SET_FILTER } from './actionTypes';
+import { SET_CURRENT_SCREEN } from './actionTypes';
+
+let getUrl = (collection, filter) => {
+    return `${BASE_API_URL}/${collection}.json?limit=30`;
+};
+
+export function setCurrentScreen(screen) {
+    return (dispatch, getState) => {
+        dispatch({
+            type: SET_CURRENT_SCREEN,
+            screen
+        });
+    };
+}
 
 export function fetchDrivers() {
     return (dispatch, getState) => {
@@ -14,7 +29,7 @@ export function fetchDrivers() {
             type: FETCH_DRIVERS
         });
 
-        fetch(`${BASE_API_URL}/drivers.json`).then(
+        fetch(getUrl('drivers')).then(
             response => response.json().then(data => dispatch({
                 type:   FETCH_DRIVERS,
                 status: 'success',
@@ -40,7 +55,7 @@ export function fetchCircuits() {
             type: FETCH_CIRCUITS
         });
 
-        fetch(`${BASE_API_URL}/circuits.json`).then(
+        fetch(getUrl('circuits')).then(
             response => response.json().then(data => dispatch({
                 type:   FETCH_CIRCUITS,
                 status: 'success',
@@ -66,7 +81,7 @@ export function fetchConstructors() {
             type: FETCH_CONSTRUCTORS
         });
 
-        fetch(`${BASE_API_URL}/constructors.json`).then(
+        fetch(getUrl('constructors')).then(
             response => response.json().then(data => dispatch({
                 type:   FETCH_CONSTRUCTORS,
                 status: 'success',
@@ -80,6 +95,19 @@ export function fetchConstructors() {
         );
     };
 }
+
+export function setFilter(filter) {
+    return (dispatch, getState) => {
+        dispatch({
+            type: SET_FILTER,
+            filter
+        });
+        debugger;
+        dispatch(fetchDrivers());
+    };
+}
+
+// PLAYERS LEGACY
 
 let getSearchPromise = name => {
     if (name) {
