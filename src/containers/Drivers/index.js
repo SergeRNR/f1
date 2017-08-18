@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import FilterContainer from '../FilterContainer';
 import ListContainer from './ListContainer';
+import PaginationContainer from '../PaginationContainer';
 import { setCurrentScreen } from '../../actionCreators';
 
 class Drivers extends React.Component {
@@ -16,6 +17,7 @@ class Drivers extends React.Component {
                 <FilterContainer />
                 <h4>Drivers</h4>
                 <ListContainer />
+                <PaginationContainer />
             </div>
         );
     }

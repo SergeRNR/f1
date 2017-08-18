@@ -8,3 +8,8 @@
         padding: 4px 8px;
     }
 }
+
+.pagination>.active>a {
+    background-color: $color-nav-bg;
+    border-color: $color-nav-bg;
+}

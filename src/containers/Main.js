@@ -4,6 +4,7 @@ import {
     Route
 } from 'react-router-dom';
 
+import Home from './Home';
 import Constructors from './Constructors';
 import Circuits from './Circuits';
 import Drivers from './Drivers';
@@ -13,7 +14,8 @@ class Main extends React.Component {
         return (
             <main>
                 <Switch>
-                    <Route path='/constructors' component={Constructors} />                
+                    <Route exact path='/' component={Home} />
+                    <Route path='/constructors' component={Constructors} />
                     <Route path='/circuits' component={Circuits} />
                     <Route path='/drivers' component={Drivers} />
                 </Switch>

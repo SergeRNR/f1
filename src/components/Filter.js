@@ -8,13 +8,9 @@ class Filter extends React.Component {
         this.onSubmit = this.onSubmit.bind(this);
     }
 
-    // componentDidMount() {
-    //     this.props.onMount();
-    // }
-
     onChange(event) {
         let target = event.target;
-        let value = target.value || null;
+        let value = target.value && target.value !== 'all' ? target.value : null;
         let name = target.name;
         this.setState({ [name]: value });
     }
@@ -25,6 +21,15 @@ class Filter extends React.Component {
     }
 
     render() {
+        let yearOptions = [];
+        let currentYear = (new Date).getFullYear();
+
+        for (let i = currentYear; i >= 1950; i--) {
+            yearOptions.push((
+                <option key={i} value={i}>{i}</option>
+            ));
+        }
+
         return (
             <div className='f1-filter'>
                 <form onSubmit={this.onSubmit} className='form-inline'>
@@ -32,9 +37,8 @@ class Filter extends React.Component {
                         <label>
                             Select year:
                             <select name='year' onChange={this.onChange} className='form-control'>
-                                <option>All</option>
-                                <option value='2017'>2017</option>
-                                <option value='2007'>2007</option>
+                                <option value='all'>All</option>
+                                {yearOptions}
                             </select>
                         </label>
                         <button type='submit' className='btn btn-default'>Apply</button>

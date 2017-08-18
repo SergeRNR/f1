@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import { FETCH_DRIVERS } from '../actionTypes';
 import { FETCH_CIRCUITS } from '../actionTypes';
 import { FETCH_CONSTRUCTORS } from '../actionTypes';
@@ -7,7 +8,22 @@ import { SET_CURRENT_SCREEN } from '../actionTypes';
 const initialState = {
     circuits: {},
     constructors: {},
-    drivers: {}
+    drivers: {},
+    currentScreen: ''
+};
+
+let getCollection = (action, dataPath) => {
+    let collection = {};
+    if (action.status === 'success') {
+        let data = _.get(action.data, dataPath, []);
+        collection.items = data;
+        collection.limit = Number(action.data.limit);
+        collection.offset = Number(action.data.offset);
+        collection.total = Number(action.data.total);
+    } else if (action.status === 'error') {
+        collection.items = [];
+    }
+    return collection;
 };
 
 export default (state = initialState, action) => {
@@ -17,49 +33,24 @@ export default (state = initialState, action) => {
             return {...state, ...{ currentScreen: action.screen }};
 
         case FETCH_DRIVERS:
-            let drivers = {};
-            if (action.status) {
-                if (action.status === 'success') {
-                    let data = action.data.MRData.DriverTable.Drivers;
-                    drivers.items = data;
-                } else if (action.status === 'error') {
-                    drivers.items = [];
-                }
-                drivers.fetching = false;
-            } else {
-                drivers.fetching = true;
-            }
-            return {...state, ...{ drivers }};
+            let drivers = getCollection(action, 'DriverTable.Drivers');
+            return {...state, ...{ drivers: {...state.drivers, ...drivers} }};
 
         case FETCH_CIRCUITS:
-            let circuits = {};
-            if (action.status) {
-                if (action.status === 'success') {
-                    let data = action.data.MRData.CircuitTable.Circuits;
-                    circuits.items = data;
-                } else if (action.status === 'error') {
-                    circuits.items = [];
-                }
-                circuits.fetching = false;
-            } else {
-                circuits.fetching = true;
-            }
-            return {...state, ...{ circuits }};
+            let circuits = getCollection(action, 'CircuitTable.Circuits');
+            return {...state, ...{ circuits: {...state.circuits, ...circuits} }};
 
         case FETCH_CONSTRUCTORS:
-            let constructors = {};
-            if (action.status) {
-                if (action.status === 'success') {
-                    let data = action.data.MRData.ConstructorTable.Constructors;
-                    constructors.items = data;
-                } else if (action.status === 'error') {
-                    constructors.items = [];
-                }
-                constructors.fetching = false;
-            } else {
-                constructors.fetching = true;
-            }
-            return {...state, ...{ constructors }};
+            let constructors = getCollection(action, 'ConstructorTable.Constructors');
+            return {...state, ...{ constructors: {...state.constructors, ...constructors} }};
+
+        case SET_FILTER:
+            let collectionName = state.currentScreen;
+            let collection = state[collectionName];
+            let result = {};
+            result[collectionName] = {...collection, ...{ filter: action.filter }};
+
+            return {...state, ...result};
 
         default:
             return state;

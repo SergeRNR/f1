@@ -7,7 +7,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    onFilterApply: (filter) => dispatch(setFilter(filter))
+    onFilterApply: filter => dispatch(setFilter(filter))
 });
 
 const FilterContainer = connect(
