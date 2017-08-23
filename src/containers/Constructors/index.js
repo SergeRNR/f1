@@ -4,23 +4,28 @@ import FilterContainer from '../FilterContainer';
 import ListContainer from './ListContainer';
 import PaginationContainer from '../PaginationContainer';
 import { setCurrentScreen } from '../../actionCreators';
+import PropTypes from 'prop-types';
 
 class Constructors extends React.Component {
-    componentDidMount() {
-        this.props.dispatch(setCurrentScreen('constructors'));
-    }
+  componentDidMount() {
+    this.props.dispatch(setCurrentScreen('constructors'));
+  }
 
-    render() {
-        return (
-            <div>
-                <h4>Filter</h4>
-                <FilterContainer />
-                <h4>Constructors</h4>
-                <ListContainer />
-                <PaginationContainer />
-            </div>
-        );
-    }
+  render() {
+    return (
+      <div>
+        <h4>Filter</h4>
+        <FilterContainer />
+        <h4>Constructors</h4>
+        <ListContainer />
+        <PaginationContainer />
+      </div>
+    );
+  }
 }
+
+Constructors.propTypes = {
+  dispatch: PropTypes.func
+};
 
 export default connect()(Constructors);
