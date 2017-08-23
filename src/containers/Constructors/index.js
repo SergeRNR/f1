@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
 
 class Constructors extends React.Component {
   componentDidMount() {
-    this.props.dispatch(setCurrentScreen('constructors'));
+    this.props.setCurrentScreen('constructors');
   }
 
   render() {
@@ -25,7 +25,7 @@ class Constructors extends React.Component {
 }
 
 Constructors.propTypes = {
-  dispatch: PropTypes.func
+  setCurrentScreen: PropTypes.func
 };
 
-export default connect()(Constructors);
+export default connect(() => ({}), { setCurrentScreen })(Constructors);
